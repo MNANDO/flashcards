@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ROUTES from "../../app/routes";
-// import selector
+import { selectTopics } from './topicsSlice.js';
+import { useSelector } from "react-redux";
 
 export default function Topics() {
-  const topics = {}; // replace this with a call to your selector to select all the topics in state
+  const topics = useSelector(selectTopics); // replace this with a call to your selector to select all the topics in state
 
   return (
-    <section className="center">
+    <section className="container">
       <h1>Topics</h1>
       <ul className="topics-list">
         {Object.values(topics).map((topic) => (

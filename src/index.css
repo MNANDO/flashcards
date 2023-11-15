@@ -9,6 +9,8 @@ body {
 }
 
 nav {
+    position: absolute;
+    width: 100%;
   background: #b736ff;
   display: flex;
   padding: 24px 36px;
@@ -72,7 +74,16 @@ button,
 }
 
 section {
-  padding: 20px 16px;
+}
+
+.container {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh; 
 }
 
 input,
