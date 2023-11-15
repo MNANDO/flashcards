@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import ROUTES from "../app/routes";
 import { ALL_ICONS } from "../data/icons";
 // import addTopic
+import { addTopic } from "../features/topics/topicsSlice";
 
 export default function NewTopicForm() {
   const dispatch = useDispatch();
@@ -19,11 +20,12 @@ export default function NewTopicForm() {
     }
 
     // dispatch new topic
+    dispatch(addTopic({ name, id: uuidv4(), icon }));
     navigate(ROUTES.topicsRoute());
   };
 
   return (
-    <section>
+    <section className="container">
       <form onSubmit={handleSubmit}>
         <h1 className="center">Create a new topic</h1>
         <div className="form-section">

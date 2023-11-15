@@ -13,17 +13,21 @@ import Quizzes from "../features/quizzes/Quizzes";
 import AppLayout from "./AppLayout";
 
 export default function App() {
+
+    const appUrl = process.env.NODE_ENV === 'production'
+      ? '/flashcards'
+      : '';
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={appUrl}>
       <Routes>
-      <Route path="/" element={<AppLayout/>}>
-    <Route path="topics" element={<Topics/>}/>
-    <Route path="topics/new" element={<NewTopicForm/>}/>
-    <Route path="topics/:topicId" element={<Topic/>}/>
-    <Route path="quizzes" element={<Quizzes/>}/>
-    <Route path="quizzes/new" element={<NewQuizForm/>}/>
-    <Route path="quizzes/:quizId" element={<Quiz/>}/>
-  </Route>
+          <Route path="/" element={<AppLayout/>}>
+            <Route path="topics" element={<Topics/>}/>
+            <Route path="topics/new" element={<NewTopicForm/>}/>
+            <Route path="topics/:topicId" element={<Topic/>}/>
+            <Route path="quizzes" element={<Quizzes/>}/>
+            <Route path="quizzes/new" element={<NewQuizForm/>}/>
+            <Route path="quizzes/:quizId" element={<Quiz/>}/>
+          </Route>
       </Routes>
     </BrowserRouter>
   )
