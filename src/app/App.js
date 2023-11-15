@@ -13,8 +13,12 @@ import Quizzes from "../features/quizzes/Quizzes";
 import AppLayout from "./AppLayout";
 
 export default function App() {
+
+    const appUrl = process.env.NODE_ENV === 'production'
+      ? '/flashcards'
+      : '';
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={appUrl}>
       <Routes>
           <Route path="/" element={<AppLayout/>}>
             <Route path="topics" element={<Topics/>}/>
