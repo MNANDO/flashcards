@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import ROUTES from "../../app/routes";
 import { selectTopics } from './topicsSlice.js';
