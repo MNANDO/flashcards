@@ -30,9 +30,7 @@ export default function NewQuizForm() {
       cardIds.push(cardId);
       dispatch(addCard({ ...card, id: cardId }));
     });
-    // create the new quiz here
 
-    const quizId = uuidv4();
 
     // dispatch add quiz action 
       dispatch(addQuiz({id: uuidv4(), name, topicId, cardIds}));
