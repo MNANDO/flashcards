@@ -1,38 +1,36 @@
-name: CI/CD for React App
+name: Node.js React
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
 
-    - name: Build React app
-      run: npm run build
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        personal_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
