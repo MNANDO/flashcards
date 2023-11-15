@@ -14,13 +14,10 @@ import AppLayout from "./AppLayout";
 
 export default function App() {
 
-    const appUrl = process.env.NODE_ENV === 'production'
-      ? '/flashcards'
-      : '';
   return (
     <BrowserRouter basename={appUrl}>
       <Routes>
-          <Route path="/" element={<AppLayout/>}>
+          <Route path="/flashcards/" element={<AppLayout/>}>
             <Route path="topics" element={<Topics/>}/>
             <Route path="topics/new" element={<NewTopicForm/>}/>
             <Route path="topics/:topicId" element={<Topic/>}/>
