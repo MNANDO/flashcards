@@ -17,7 +17,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<AppLayout/>}>
+          <Route path="flashcards/" element={<AppLayout/>}>
             <Route path="topics" element={<Topics/>}/>
             <Route path="topics/new" element={<NewTopicForm/>}/>
             <Route path="topics/:topicId" element={<Topic/>}/>
